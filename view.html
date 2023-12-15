@@ -1,0 +1,64 @@
+<html>
+    <head>
+        <style>
+            body{
+                background-color: rgb(245, 229, 239);
+            }
+            li{
+                list-style-type: none;
+                padding: 20px;
+                text-align: center;
+            }
+img {
+    margin-left: 16%;
+}
+            button {
+                margin-left: 25%;
+            }
+            img:hover {
+                width: 250px;
+                height: 250px;
+
+            }
+        </style>
+    </head>
+    <body>
+      
+<div style="margin-top: 50px;">
+    <img alt="" style="float: left;">
+    <li style="font-size: 25px;"></li>
+    <li style="font-size: 25px;"></li>
+    <li style="font-weight: bold;"></li>
+    <br>
+    <br><br><br>
+    <li style="border-radius: 20px; color: white; background-color: rgb(115, 113, 110); width: 50px; margin-left: 19%;float: left;"></li>
+    <li style="margin-left: 33%;"></li>
+</div>
+ 
+   
+        <!-- <div><div style="color: rgb(91, 115, 144); font-size: 25px; font-size: 25px; margin-left: 600px;">go to main page <a style="text-decoration: none;" href="login_website.html"> click here</a></div> -->
+        <button style="float: right; margin-top:200px ;" > go back</button>
+    </body>
+    <script>
+        let back1=document.querySelector("button")
+        let btttr=addEventListener("click",()=>{
+            window.history.back("/dom_website.html")
+        })
+
+let abc=localStorage.getItem("one")
+let abc1=JSON.parse(abc)
+console.log(abc1);
+
+let abc2=document.querySelectorAll("li")
+abc2[0].innerText=abc1["id"];
+abc2[1].innerText=abc1["category"];
+abc2[2].innerText=abc1["title"];
+abc2[3].innerText=abc1["price"];
+abc2[4].innerText=abc1["description"];
+let img1=document.querySelector("img")
+img1.setAttribute("src",abc1["image"])
+img1.style.width="200px";
+img1.style.height="200px";
+</script>
+
+</html>

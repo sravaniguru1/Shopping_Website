@@ -1,0 +1,224 @@
+<!-- <html>
+  <head>
+    <script src="https://js.stripe.com/v3/"></script>
+    <style>
+      li:hover {
+        background-color: rgb(51, 51, 245);
+        color: whitesmoke;
+      }
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f8f9fa;
+      }
+
+      ul.nav {
+        background-color: #343a40;
+        padding: 10px;
+        margin: 0;
+        list-style-type: none;
+      }
+
+      ul.nav li {
+        display: inline-block;
+        margin-right: 10px;
+      }
+
+      ul.nav li a {
+        text-decoration: none;
+        color: white;
+        padding: 10px;
+        border-radius: 5px;
+      }
+
+      ul.nav li a:hover {
+        background-color: rgb(51, 51, 245);
+        color: whitesmoke;
+      }
+
+      #tab {
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      #tab td,
+      #tab th {
+        border: 1px solid #dee2e6;
+        padding: 8px;
+        text-align: left;
+      }
+
+      #tab th {
+        background-color: #343a40;
+        color: white;
+      }
+
+      #product-count,
+      #total-price {
+        margin-top: 10px;
+        font-weight: bold;
+      }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <ul class="nav nav-pills nav-fill">
+      <li class="nav-item">
+        <a class="nav-link" href="dom_website.html">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Count</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="checkout.html">checkout</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="registration.html">Sign out</a>
+      </li>
+    </ul>
+    <table id="tab"></table>
+    <div id="product-count"></div>
+    <div id="total-price"></div>
+    <script>
+      debugger;
+      let pro = localStorage.getItem("cartproduct");
+      let product = JSON.parse(pro) || [];
+      console.log(product);
+      function updateCountAndPrice(value,index) {
+  countValue.innerText = itemCount;
+  productCount += itemCount;
+  totalPrice += parseFloat(value.price) * itemCount;
+
+  product[index].count = itemCount; // Store count in the product object
+  localStorage.setItem("cartproduct", JSON.stringify(product));
+
+  productCountElement.innerHTML = `Product Count: ${productCount}`;
+  totalPriceElement.innerHTML = `Total Price: $${totalPrice.toFixed(2)}`;
+}
+      function tableone() {
+        let tab = document.getElementById("tab");
+        tab.innerHTML = "";
+        let productCountElement = document.getElementById("product-count");
+        let totalPriceElement = document.getElementById("total-price");
+        let productCount = 0;
+        let totalPrice = 0;
+        if (product && product.length > 0) {
+          product.forEach((value, index) => {
+            let tre = document.createElement("tr");
+            let tde = document.createElement("td");
+            let imga = document.createElement("img");
+            let tdimg = document.createElement("td");
+            let cate = document.createElement("td");
+            cate.innerText = value.category;
+            let tit = document.createElement("td");
+            tit.innerText = value.title;
+            let pri = document.createElement("td");
+            pri.innerText = value.price;
+            let desc = document.createElement("td");
+            desc.innerText = value.description;
+            imga.setAttribute("src", value["image"]);
+            tdimg.appendChild(imga);
+            imga.style.width = "200px";
+            imga.style.height = "200px";
+            tde.innerText = value.id;
+            let bttn = document.createElement("button");
+            bttn.innerText = ">";
+            bttn.style.fontSize = "30PX";
+            bttn.style.borderColor = "white";
+            bttn.style.backgroundColor = "white";
+            let tdbtn = document.createElement("td");
+            let btnadd = document.createElement("button");
+            btnadd.innerText = "Add to cart";
+            let cartTd = document.createElement("td");
+            let countTd = document.createElement("td");
+            let itemCount = 1; // Initial item count
+
+            let countDiv = document.createElement("div");
+            countDiv.style.display = "flex";
+            countDiv.style.alignItems = "center";
+            let decreaseBtn = document.createElement("button");
+          decreaseBtn.innerText = "-";
+          decreaseBtn.style.cursor = "pointer";
+          decreaseBtn.style.margin = "0 5px";
+          decreaseBtn.style.fontSize = "16px";
+          decreaseBtn.style.backgroundColor = "#343a40";
+          decreaseBtn.style.color = "white";
+          decreaseBtn.style.border = "none";
+          decreaseBtn.style.borderRadius = "3px";
+          decreaseBtn.style.padding = "5px 10px";
+          decreaseBtn.addEventListener("click", () => {
+            if (itemCount > 1) {
+              itemCount--;
+              updateCountAndPrice(value,index);
+            }
+          });
+          let countValue = document.createElement("span");
+          countValue.innerText = itemCount;
+
+          let increaseBtn = document.createElement("button");
+          increaseBtn.innerText = "+";
+          increaseBtn.style.cursor = "pointer";
+          increaseBtn.style.margin = "0 5px";
+          increaseBtn.style.fontSize = "16px";
+          increaseBtn.style.backgroundColor = "#343a40";
+          increaseBtn.style.color = "white";
+          increaseBtn.style.border = "none";
+          increaseBtn.style.borderRadius = "3px";
+          increaseBtn.style.padding = "5px 10px";
+          increaseBtn.addEventListener("click", () => {
+            itemCount++;
+            updateCountAndPrice();
+          });
+
+          countDiv.appendChild(decreaseBtn);
+          countDiv.appendChild(countValue);
+          countDiv.appendChild(increaseBtn);
+          countTd.appendChild(countDiv);
+            let btndel = document.createElement("button");
+            btndel.innerText = "Remove";
+            let delTd = document.createElement("td");
+            delTd.appendChild(btndel);
+            cartTd.appendChild(btnadd);
+            tdbtn.appendChild(bttn);
+            tre.appendChild(tde);
+            tre.appendChild(tdimg);
+            tre.appendChild(cate);
+            tre.appendChild(tit);
+            tre.appendChild(pri);
+            tre.appendChild(desc);
+            tab.appendChild(tre);
+            tre.appendChild(tdbtn);
+            tre.appendChild(countTd);
+            tre.appendChild(delTd);
+            bttn.addEventListener("click", () => {
+              localStorage.setItem("one", JSON.stringify(value));
+              window.location.assign("./view.html");
+            });
+            btndel.addEventListener("click", () => {
+              removeItem(index);
+            });
+            productCount += 1;
+            totalPrice += parseFloat(value.price);
+          });
+        } else {
+          tab.innerHTML = "<tr><td colspan='7'>No items in the cart</td></tr>";
+        }
+
+      }
+
+      function removeItem(index) {
+        product.splice(index, 1);
+        localStorage.setItem("cartproduct", JSON.stringify(product));
+        tableone();
+      }
+
+      tableone();
+    </script>
+  </body>
+</html> -->

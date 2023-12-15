@@ -1,0 +1,136 @@
+<html>
+    <head><title>login page</title>
+    <style>
+        .divv {
+        margin-left: 25%;
+        border: 1px solid black;
+        width: 30%;
+        background-color: rgb(178, 186, 197);
+        margin-top: 10%;
+        }
+        body {
+         background-image: url("https://wallpaperboat.com/wp-content/uploads/2020/11/10/60057/shopping-07.jpg") ;
+        }
+        
+    </style>
+    </head>
+    <body>
+
+<div class="divv">
+    <form action="">
+        <h1 style="text-align: center;">Login</h1>
+        <br>
+        <br>
+        <label for="name" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; User name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;&nbsp;</label>
+        <input type="text" id="name">
+        <span id="spa2" style="color: red; display: none; text-align: center;"></span>
+        <br>
+        <br>
+        <label for="password"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Password&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;&nbsp;</label>
+        <input type="password" id="password">
+        <br>
+        <br>
+        <input style="margin-left: 40%;" type="submit">
+        <br>
+    </form>
+</div>
+<br>
+<div><div style="color: rgb(91, 115, 144); font-size: 25px; font-size: 25px; margin-left: 440px;">If not yet registered <a style="text-decoration: none;" href="registration.html"> click here</a></div>
+</div>
+    <script>
+        console.log(document.forms[0]);
+        document.forms[0].addEventListener("submit",function(e) {
+            e.preventDefault();
+            console.log(e);
+          console.log(e.target[0].value);
+          console.log(e.target[1].value);
+        var ausername=e.target[0].value;
+        var apasswd=e.target[1].value
+        var cnfpass=e.target[2].value   
+        if(ausername.length==10 && ausername[0]==ausername[0].toUpperCase()) {
+            e.target[0].style.border="2px solid green"
+            let span2=document.getElementById("spa2")
+            span2.style.display="none"
+        }
+        // else {
+        //     let span2=document.getElementById("spa2")
+        //     span2.style.display="block"
+        //     alert("user name or password wrong")
+        // }
+        if(e.target[1].value==e.target[2].value && e.target[1].value.length>=8)   {
+            e.target[2].style.border="2px solid green"
+            let span1= document.getElementById("spa1")
+             span1.style.display="none"
+        }
+        // else {
+        //      let span1= document.getElementById("spa1")
+        //      span1.style.display="block"
+        //      alert("user name or password wrong")
+        // }
+        if (e.target[0].value === "" && e.target[1].value === "") {
+            e.target[0].style.border="2px solid red"
+            e.target[1].style.border="2px solid red"
+
+        } 
+//         var users = JSON.parse(localStorage.getItem("user"));
+// console.log(users);
+// for (var i = 0; i < users.length; i++) {
+//         var user = users[i];
+//         if (user.username === ausername && user.password === apasswd) {
+//             isAuthenticated = true;
+//             console.log(isAuthenticated);
+
+//             break; // Exit the loop if a matching user is found
+//         }
+//     }
+    var isAuthenticated = false; // Initialize as false
+
+// Retrieve user data from localStorage
+var users = JSON.parse(localStorage.getItem("users"));
+console.log(users);
+
+if (users && Array.isArray(users)) {
+    for (var i = 0; i < users.length; i++) {
+        var user = users[i];
+        if (user.username === ausername && user.password === apasswd) {
+            isAuthenticated = true;
+            alert("login sucessfull")
+            window.open("./cele.html")
+            console.log(isAuthenticated);
+            break; // Exit the loop if a matching user is found
+        } 
+
+}
+if(!isAuthenticated) {
+      alert("User not Registered")
+}
+    }
+
+
+        })
+    
+    </script>
+    </body>
+</html>
+<!-- <html>
+    <body>
+        <script>
+            let passWord=(event.target[1].value);
+        console.log(passWord.length)
+        if ( typeof(passWord=="number" && !isNaN(passWord))) {
+              alert("Password atlest 10 charactors, and all charactors should be small letters")
+            let spann2=document.getElementById("spann1");
+            spann2.style.display="none";
+            event.target[1].style.border="2px solid green";
+
+        }
+        else {
+            alert("Password atlest 10 charactors, and all charactors should be small letters")
+            let spann2=document.querySelector("#spann1");
+            spann2.style.display="block";
+            event.target[1].style.border="2px solid red";
+
+        }
+        </script>
+    </body>
+</html> -->

@@ -1,0 +1,198 @@
+<html>
+    <head><title>Registraion</title>
+    <style>
+        .divv {
+        margin-left: 25%;
+        border: 2px solid black;
+        width: 30%;
+        background-color: rgb(178, 186, 197);
+        margin-top: 10%;
+
+        }
+        body {
+         background-image: url("https://wallpaperboat.com/wp-content/uploads/2020/11/10/60057/shopping-07.jpg") ;
+        }
+        #sub {
+        margin-left: 40%;
+        }
+    </style>
+    </head>
+    <body>
+<div class="divv">
+    <form action="" id="form1">
+        <h1 style="text-align: center;">Registration Form</h1>
+        <br>
+        <br>
+        <label for="username" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; User name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;&nbsp;</label>
+        <input type="text" id="username">
+        <span id="spa2" style="color: red; display: none; ">Username length must be 10</span>
+        <br>
+        <br>
+        <label for="password"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Password&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;&nbsp;</label>
+        <input type="password" id="password">
+        <br>
+        <br>
+        <label for="password1" > &nbsp;Confirm Password &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;&nbsp;</label>
+        <input type="password" id="password1">
+        <span id="spa1" style="color: red; display: none; ">Password mismatched</span>
+        <br>
+        <br>
+        <label for="date" ></label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Date of birth&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;&nbsp; </label>
+        <input type="date" id="date">
+        <br>
+        <br>
+        <label for="num"  >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Phone Number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;&nbsp;</label>
+        <input type="tel" id="num">
+        <span id="phnn" style="color: red; display: none; "> Phone number should start with 9or 8or7 or 6 and length should be 10</span>
+        <br>
+        <br>
+        <label for="mail" >  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+        <input type="email" id="mail">
+        <span id="emai" style="color: red; display: none; ">Fill the email properly</span>
+        <br>
+        <br>
+        <input type="submit" id="sub">
+        <br>
+        <br>
+        <input type="reset" style=" margin-left: 40%;">
+    </form>
+</div>
+<br>
+<div style="color: rgb(91, 115, 144);font-size: 25px; margin-left: 450px; ">already Registered <a style="text-decoration: none;" href="login_website.html"> click here</a></div>
+    <script>
+        
+        var count=0;
+        console.log(document.forms[0]);
+        document.forms[0].addEventListener("submit",function(e) {
+            e.preventDefault();
+            console.log(e);
+          console.log(e.target[0].value);
+          console.log(e.target[1].value);
+        var username=e.target[0].value;
+        var passwd=e.target[1].value
+        var cnfpass=e.target[2].value   
+        var phno=e.target[4].value
+        var ema=e.target[5].value
+        console.log(count);
+        var users=[]
+         users = JSON.parse(localStorage.getItem("users"))?JSON.parse(localStorage.getItem("users")):[];
+          var olduser=false
+          for (var i = 0; i < users.length; i++) {
+        if (users[i].username === username) {
+            olduser = true;
+            break;
+        }
+        if (e.target[0].value === "" ) {
+            e.target[0].style.border="2px solid red"
+        } 
+        if (e.target[1].value === "" ) {
+            e.target[1].style.border="2px solid red"   
+        }
+            if (e.target[2].value === "" ) {
+            e.target[2].style.border="2px solid red"   }
+            if (e.target[3].value === "" ) {
+            e.target[3].style.border="2px solid red"   }
+            if (e.target[4].value === "" ) {
+            e.target[4].style.border="2px solid red"   }
+            if (e.target[5].value === "" ) {
+            e.target[5].style.border="2px solid red"   }
+            
+        if(username.length==10 && username[0]==username[0].toUpperCase()) {
+            e.target[0].style.border="2px solid green"
+            let span2=document.getElementById("spa2")
+            span2.style.display="none"
+
+
+        }
+        else {
+            let span2=document.getElementById("spa2")
+            span2.style.display="block";
+        }
+        if(e.target[1].value==e.target[2].value && e.target[1].value.length>=8)   {
+            e.target[2].style.border="2px solid green"
+            let span1= document.getElementById("spa1")
+             span1.style.display="none"
+
+             
+
+        }
+        else {
+             let span1= document.getElementById("spa1")
+             span1.style.display="block"
+
+        }
+if (phno[0] === "9" || phno[0] === "8" || phno[0] === "7" || phno[0] === "6")  {
+    if(phno.length === 10) {
+        
+
+        console.log(count);
+    e.target[4].style.border = "2px solid green";     }
+} else {
+    let span3 = document.getElementById("phnn");
+    span3.style.display = "block";
+
+}
+if(ema.slice(-10)==="@gmail.com") {
+    e.target[5].style.border="2px solid green"
+    let email2=document.getElementById("emai")
+   email2.style.display="none"
+   
+   
+}
+else {
+   let email2=document.getElementById("emai")
+   email2.style.display="block"
+
+}
+    }
+     
+
+
+        
+
+let spa2=document.getElementById("sub")
+spa2.addEventListener("click",function() {
+
+    if(username.length==10 && username[0]==username[0].toUpperCase() && e.target[1].value==e.target[2].value && e.target[1].value.length>=8 &&  phno[0] === "9" || phno[0] === "8" || phno[0] === "7" || phno[0] === "6" && phno.length === 10  && ema.slice(-10)==="@gmail.com") {
+        if(olduser) {
+        alert("User name already exists ")
+    }
+    else {
+        var newUser = {
+        username:username,
+        password:passwd,
+        dateOfBirth:e.target[3].value,
+        email:   ema,
+        phoneNo:phno
+    } 
+        users.push(newUser) // Append the new user to the end of the array
+        console.log(users);
+        localStorage.setItem("users", JSON.stringify(users));
+        alert("Registration Suceesful")
+        window.open("./login_website.html", "_self")
+
+        // console.log("User registration successful.");
+    // console.log(users);
+        
+}       
+    }
+})
+        })
+        // let bttn=document.querySelector("button")
+// bttn.addEventListener("click",function() {
+// let forma=document.getElementById("form1")
+//  forma.reset()
+//  document.getElementById("spa2").style.display = "none";
+//     document.getElementById("spa1").style.display = "none";
+//     document.getElementById("phnn").style.display = "none";
+//     document.getElementById("emai").style.display = "none";
+//     let inputs = document.querySelectorAll("input");
+//         inputs.forEach((input) => {
+//             input.style.border = "1px solid #ccc"; // Reset border styles
+//         });
+//         console.log(count);
+
+// })
+    </script>
+    </body>
+</html>

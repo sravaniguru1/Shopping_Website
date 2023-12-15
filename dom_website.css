@@ -1,0 +1,19 @@
+
+table {
+  width:80%;
+  margin-left: 20%;
+}
+td {
+  padding: 15px;
+}
+tr:hover {
+  background-color: rgb(145, 198, 220);
+} 
+#tab img{
+     height: 150px !important;
+     
+}
+#hov.li:hover {
+  background-color: black;
+  color: rgb(255, 255, 255);
+}

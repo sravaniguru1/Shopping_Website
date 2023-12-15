@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <style>
+        body {
+         background-image: url("https://wallpaperboat.com/wp-content/uploads/2020/11/10/60057/shopping-07.jpg") ;
+        }
+        h1 {
+            color: rgb(91, 115, 144);
+            text-align: center;
+        }
+        button {
+            border: 2px solid white;
+        background-color: rgb(179, 208, 236);
+        border-radius: 20px;
+        font-size: 24px;
+margin-left: 20%;
+margin-top: 16%;
+padding: 20px;
+        }
+        </style>
+    </head>
+    <body>
+        <h1>World greatest onine sale is live . . .</h1>
+
+        <button id="one">Sign up</button>
+        <button id="two">Login</button>
+    </body>
+    <script>
+        let bttn=document.getElementById("one")
+        bttn.addEventListener("click",function() {
+            window.open("./registration.html","_self")
+        })
+        let bttn1=document.getElementById("two")
+        bttn1.addEventListener("click",function() {
+            window.open("./login_website.html","_self")
+        })
+    </script>
+</html>
